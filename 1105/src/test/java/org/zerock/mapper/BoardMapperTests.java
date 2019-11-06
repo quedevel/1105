@@ -2,6 +2,7 @@ package org.zerock.mapper;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -22,22 +23,38 @@ public class BoardMapperTests {
 	private BoardMapper mapper;
 	
 	@Test
-	public void testSelectPaging() {
-		mapper.selectList(10).forEach(vo->{
-			log.info(vo);
-		});
+	public void testSearchList() {
+		List<BoardVO> list =
+		mapper.searchList(
+				1, 
+				10, 
+				"2", 
+				new String[] {"T"}
+				);
+		
+		list.forEach(log::info);
+		log.info("--------------------");
+//		int count = mapper.searchCount("11", new String[] {"T"});
+//		log.info("count: "+count);
 	}
+	
+//	@Test
+//	public void testSelectPaging() {
+//		mapper.selectList(10).forEach(vo->{
+//			log.info(vo);
+//		});
+//	}
 	
 	@Test
 	public void testInsert() {
-		IntStream.range(1,101).forEach(i->{
+//		IntStream.range(1,101).forEach(i->{
 			BoardVO vo = new BoardVO();
-			vo.setTitle("제목.."+i);
-			vo.setContent("내용...."+i);
-			vo.setWriter("user"+i);
+			vo.setTitle("title..");
+			vo.setContent("content....");
+			vo.setWriter("user");
 			int count = mapper.insert(vo);
 			log.info(count);
-		});
+//		});
 	}
 
 	@Test

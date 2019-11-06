@@ -16,15 +16,23 @@ public class MySQLConnectTests {
 		
 		// MySQL 5.6 com.mysql.jdbc.Driver4
 		// MySQL 6 over com.mysql.cj.jdbc.Driver
-		Class<?> clz = Class.forName("com.mysql.cj.jdbc.Driver");
+//		Class<?> clz = Class.forName("com.mysql.cj.jdbc.Driver");
+		Class<?> clz = Class.forName("oracle.jdbc.driver.OracleDriver");
 		log.info(clz);
 		
 		Connection con =
 		DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/bitdb?serverTimezone=Asia/Seoul&useSSL=false"
-				,"bit04"
+				"jdbc:oracle:thin:@localhost:1521:xe"
+				,"kakarrot"
 				,"1234"
-				);
+				);		
+				
+				
+//		DriverManager.getConnection(
+//				"jdbc:mysql://localhost:3306/bitdb?serverTimezone=Asia/Seoul&useSSL=false"
+//				,"bit04"
+//				,"1234"
+//				);
 		
 		log.info(con);
 		con.close();

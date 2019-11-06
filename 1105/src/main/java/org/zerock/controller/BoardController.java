@@ -1,5 +1,6 @@
 package org.zerock.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -25,21 +26,28 @@ public class BoardController {
 	@GetMapping("/register")
 	public void registerGET(){}
 	
-    @PostMapping("/register")
-    public String registerPOST(BoardVO vo){
-        boardMapper.insert(vo);
-        return "redirect:list";
-    }
+//    @PostMapping("/register")
+//    public String registerPOST(BoardVO vo){
+//        boardMapper.insert(vo);
+//        return "redirect:list";
+//    }
 	
 	@GetMapping("/list")
-	public void list(@RequestParam(defaultValue = "1") int page, Model model) {
-		log.info("........................"+page);
-		log.info("" + boardMapper);
+	public void list(
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "10") int amount,
+			String keyword,
+			String[] types,
+			Model model) {
+		log.info("..............       " + keyword);
+		log.info("..............       " + Arrays.toString(types));
 		
-		List<BoardVO> list = boardMapper.selectList((page-1)*10);
+//		List<BoardVO> list = boardMapper.selectList((page-1)*10, amount);
+//		model.addAttribute("list", list);
+//		log.info(list);
 		
+		List<BoardVO> list = boardMapper.searchList(page, amount, keyword, types);
 		model.addAttribute("list", list);
-		
 		log.info(list);
 	}
 	

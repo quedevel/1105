@@ -10,9 +10,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class SampleListener implements ServletContextListener {
 
-    public SampleListener() {
-    	
-    }
+    public SampleListener() {}
     
     // 이 WebApplication이 내려간다면
     public void contextDestroyed(ServletContextEvent sce)  { 
@@ -20,7 +18,6 @@ public class SampleListener implements ServletContextListener {
     	System.out.println("downed.....");
     	System.out.println("downed.....");
     	System.out.println("downed.....");
-
     }
 
     // 이 WebApplication이 뜬다면
@@ -29,7 +26,5 @@ public class SampleListener implements ServletContextListener {
     	System.out.println("start.....");
     	System.out.println("start.....");
     	System.out.println("start.....");
-
     }
-	
 }
