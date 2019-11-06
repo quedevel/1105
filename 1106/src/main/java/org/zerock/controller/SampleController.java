@@ -53,7 +53,7 @@ public class SampleController {
 	}
 
 	@GetMapping("/ex3")
-	public void ex3Get() {xx
+	public void ex3Get() {
 	}
 
 	@PostMapping("/ex3")
