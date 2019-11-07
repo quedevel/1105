@@ -3,7 +3,6 @@ package org.zerock.mapper;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.dto.PageDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,19 +24,24 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testSearchList() {
-		List<BoardVO> list =
-		mapper.searchList(
-				1, 
-				10, 
-				"2", 
-				new String[] {"T"}
-				);
+		
+		PageDTO dto = new PageDTO();
+		dto.setPage(1);
+		dto.setAmount(10);
+		dto.setKeyword("m");
+		dto.setType("TC");
+		
+		List<BoardVO> list = mapper.searchList(dto);
 		
 		list.forEach(log::info);
 		log.info("--------------------");
-//		int count = mapper.searchCount("11", new String[] {"T"});
-//		log.info("count: "+count);
+		
+		int count = mapper.searchCount(dto);
+		log.info("count: "+count);
 	}
+	
+	
+	
 	
 //	@Test
 //	public void testSelectPaging() {

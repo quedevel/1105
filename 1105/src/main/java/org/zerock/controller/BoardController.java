@@ -1,15 +1,14 @@
 package org.zerock.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.BoardVO;
+import org.zerock.dto.PageDTO;
 import org.zerock.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -34,19 +33,23 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public void list(
-			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "10") int amount,
-			String keyword,
-			String[] types,
-			Model model) {
-		log.info("..............       " + keyword);
-		log.info("..............       " + Arrays.toString(types));
+//			@RequestParam(defaultValue = "1") int page,
+//			@RequestParam(defaultValue = "10") int amount,
+//			String keyword,
+//			String[] types,
+			@ModelAttribute("dto")PageDTO dto,
+			Model model
+			) {
+		
+		// @ModelAttribute 은 파라미터에 사용하고 전달받은 데이터를 다시 전달 해줄때 사용한다.
+		log.info("dto =      "+dto);
+		
 		
 //		List<BoardVO> list = boardMapper.selectList((page-1)*10, amount);
 //		model.addAttribute("list", list);
 //		log.info(list);
 		
-		List<BoardVO> list = boardMapper.searchList(page, amount, keyword, types);
+		List<BoardVO> list = boardMapper.searchList(dto);
 		model.addAttribute("list", list);
 		log.info(list);
 	}

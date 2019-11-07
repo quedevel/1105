@@ -9,7 +9,7 @@
 	</insert>
 	
 
-	<select id="searchList" resultType="org.zerock.domain.BoardVO">
+	<!-- <select id="searchList" resultType="org.zerock.domain.BoardVO">
 	select * from (
 	select <![CDATA[rownum rn]]>, bno, title, content, writer from tbl_board tb
 	where 
@@ -30,14 +30,12 @@
 	)
 	where rn > (#{page}-1)*#{amount}	
 	
-	</select>
+	</select> -->
 	
-<!-- 	<sql id="search">
-		
-	</sql> -->
 
 
-	<!-- <select id="selectList" resultType="org.zerock.domain.BoardVO">
+
+	 <select id="selectList" resultType="org.zerock.domain.BoardVO">
 		select * from tbl_board where bno > 0 order by bno desc limit #{skip}, #{amount}
 	</select>
 	
@@ -60,7 +58,7 @@
 	
 	<sql id="search">
 	<if test="keyword != null">
-			<foreach collection="type" item="item" open="AND (" close=")" separator="OR">
+			<foreach collection="types" item="item" open="AND (" close=")" separator="OR">
 					
 					<if test="item eq 'T'.toString()">
 						title like concat("%",#{keyword},"%")
@@ -76,5 +74,5 @@
 					
 			</foreach>
 		</if>
-	</sql> -->
+	</sql>
 </mapper>
