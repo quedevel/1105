@@ -1,9 +1,5 @@
 package org.zerock.dto;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-
 import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Data;

@@ -4,7 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
 	
-
 	<sql id="search">
 		<if test="keyword != null and type != null">
 			<foreach collection="types" item="item" open="AND ("
